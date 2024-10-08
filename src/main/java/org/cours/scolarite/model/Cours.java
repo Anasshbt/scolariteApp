@@ -5,23 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.cours.scolarite.model.Cours;
-
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Module {
+public class Cours {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String nom;
-    private String description;
+    private String name;
 
-
-    // New constructor that only takes id, nom, and description
-
+    @ManyToOne // Each Cours belongs to one Module
+    @JoinColumn(name = "module_id", nullable = false) // Foreign key to module
+    private Module module;  // Fix the relationship mapping
 }
